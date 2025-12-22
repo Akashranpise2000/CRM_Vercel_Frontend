@@ -39,13 +39,6 @@ export default function CompaniesList({
   return (
     <div className="space-y-6">
       {companies.map((company) => {
-<<<<<<< HEAD
-        // Handle address object or string
-        const addressObj = typeof company.address === 'object' ? company.address : null;
-        const addressString = typeof company.address === 'string' ? company.address : null;
-        const hasAddress = (addressString && addressString.trim()) ||
-                          (addressObj && (addressObj.street || addressObj.city || addressObj.state || addressObj.country || addressObj.zipCode));
-=======
         /* ✅ Normalize optional fields */
         const contacts = company.contacts ?? [];
 
@@ -67,7 +60,6 @@ export default function CompaniesList({
                 addressObj.country ||
                 addressObj.zipCode)
           );
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
 
         const isSelected = selectedCompany?.id === company.id;
 
@@ -92,13 +84,9 @@ export default function CompaniesList({
               <div>
                 <h3 className="text-xl font-semibold">{company.name}</h3>
                 {company.sector && (
-<<<<<<< HEAD
-                  <Badge variant="outline" className="mt-1">{company.sector}</Badge>
-=======
                   <Badge variant="outline" className="mt-1">
                     {company.sector}
                   </Badge>
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                 )}
               </div>
 
@@ -110,10 +98,6 @@ export default function CompaniesList({
                     e.stopPropagation();
                     onEdit(company);
                   }}
-<<<<<<< HEAD
-                  className="hover:bg-blue-50"
-=======
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                 >
                   <Pencil className="w-5 h-5 text-blue-600" />
                 </Button>
@@ -125,27 +109,12 @@ export default function CompaniesList({
                     e.stopPropagation();
                     onDelete(company);
                   }}
-<<<<<<< HEAD
-                  className="hover:bg-red-50"
-=======
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                 >
                   <Trash2 className="w-5 h-5 text-red-600" />
                 </Button>
               </div>
             </div>
 
-<<<<<<< HEAD
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div className="space-y-2">
-                <h4 className="font-medium text-muted-foreground">Basic Information</h4>
-                {company.placeOfOffice && (
-                  <div><strong>Place of Office:</strong> {company.placeOfOffice}</div>
-                )}
-                {company.headOffice && (
-                  <div><strong>Headquarters:</strong> {company.headOffice}</div>
-                )}
-=======
             {/* Basic Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div className="space-y-2">
@@ -165,27 +134,19 @@ export default function CompaniesList({
                   </div>
                 )}
 
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                 {company.website && (
                   <div>
                     <strong>Website:</strong>{" "}
                     <a
                       href={company.website}
                       target="_blank"
-<<<<<<< HEAD
-=======
                       rel="noreferrer"
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                       className="text-blue-500 hover:underline"
                     >
                       {company.website}
                     </a>
                   </div>
                 )}
-<<<<<<< HEAD
-=======
-
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                 {company.email && (
                   <div>
                     <strong>Email:</strong>{" "}
@@ -199,15 +160,6 @@ export default function CompaniesList({
                 )}
               </div>
 
-<<<<<<< HEAD
-              <div className="space-y-2">
-                <h4 className="font-medium text-muted-foreground">Point of Contact</h4>
-                {company.poc?.name ? (
-                  <div>
-                    <div><strong>Name:</strong> {company.poc.name}</div>
-                    <div><strong>Importance:</strong> {company.poc.importance}</div>
-                  </div>
-=======
               {/* POC */}
               <div className="space-y-2">
                 <h4 className="font-medium text-muted-foreground">
@@ -223,55 +175,12 @@ export default function CompaniesList({
                       <strong>Importance:</strong> {company.poc.importance}
                     </div>
                   </>
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                 ) : (
                   <div className="text-muted-foreground">Not specified</div>
                 )}
               </div>
             </div>
 
-<<<<<<< HEAD
-            {hasAddress && (
-              <div className="mt-4 pt-4 border-t">
-                <h4 className="font-medium text-muted-foreground mb-2">
-                  Address
-                </h4>
-                <div className="text-sm space-y-1">
-                  {addressObj?.street && (
-                    <div><strong>Street:</strong> {addressObj.street}</div>
-                  )}
-                  {addressObj?.city && (
-                    <div><strong>City:</strong> {addressObj.city}</div>
-                  )}
-                  {addressObj?.state && (
-                    <div><strong>State:</strong> {addressObj.state}</div>
-                  )}
-                  {addressObj?.country && (
-                    <div><strong>Country:</strong> {addressObj.country}</div>
-                  )}
-                  {addressObj?.zipCode && (
-                    <div><strong>Zip Code:</strong> {addressObj.zipCode}</div>
-                  )}
-                  {addressString && (
-                    <div><strong>Address:</strong> {addressString}</div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {company.contacts && company.contacts.length > 0 && (
-              <div className="mt-4 pt-4 border-t">
-                <h4 className="font-medium text-muted-foreground mb-2">
-                  Contact Persons ({company.contacts.length})
-                </h4>
-                <div className="space-y-3">
-                  {company.contacts.map((contact, index) => (
-                    <div key={index} className="p-3 bg-muted/50 rounded-lg text-sm">
-                      <div className="font-medium">{contact.name}</div>
-                      {contact.role && <div><strong>Role:</strong> {contact.role}</div>}
-                      {contact.phone && <div><strong>Phone:</strong> {contact.phone}</div>}
-                      {contact.email && (
-=======
             {/* Address */}
             {hasAddress && (
               <div className="mt-4 pt-4 border-t text-sm space-y-1">
@@ -350,7 +259,6 @@ export default function CompaniesList({
                       )}
 
                       {isContactObject(contact) && contact.email && (
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                         <div>
                           <strong>Email:</strong>{" "}
                           <a
@@ -361,12 +269,6 @@ export default function CompaniesList({
                           </a>
                         </div>
                       )}
-<<<<<<< HEAD
-                      {contact.importance && (
-                        <div><strong>Importance:</strong> {contact.importance}</div>
-                      )}
-=======
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                     </div>
                   ))}
                 </div>

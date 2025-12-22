@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useCRMStore } from "@/lib/store";
-<<<<<<< HEAD
-import type { Company } from "@/types";
-=======
 import type { Company, Contact } from "@/types";
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
 
 import {
   Dialog,
@@ -92,11 +88,7 @@ export default function EditCompanyModal({
         poc: company.poc || { name: "", importance: "" },
         sector: company.sector || "",
         address: addressObj,
-<<<<<<< HEAD
-        contacts: company.contacts || [],
-=======
         contacts: company.contacts ? (company.contacts as { name: string; role?: string; phone?: string; email?: string; importance?: string }[]) : [],
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
       });
     }
   }, [company]);
@@ -155,11 +147,7 @@ export default function EditCompanyModal({
     if (!company) return;
     if (!form.name.trim()) return alert("Company name is required!");
 
-<<<<<<< HEAD
-    updateCompany(company.id, form);
-=======
     updateCompany(company.id, form as Partial<Company>);
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
     onClose();
   };
 

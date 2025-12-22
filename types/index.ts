@@ -1,19 +1,13 @@
 export interface Contact {
   id: string;
-<<<<<<< HEAD
-=======
-  name?: string;
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
+name?: string;
   first_name: string;
   last_name: string;
   email?: string;
   phone?: string;
   position?: string;
-<<<<<<< HEAD
-=======
-  role?: string;
-  importance?: string;
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
+role?: string;
+importance?: string;
   company_id?: string;
   avatar_url?: string;
   created_at?: string;

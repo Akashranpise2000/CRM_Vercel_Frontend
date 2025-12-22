@@ -811,47 +811,6 @@ export const useCRMStore = create<CRMStore>((set, get) => ({
   },
 
   addExpense: async (expense) => {
-<<<<<<< HEAD
-    console.log('Adding expense locally:', expense);
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 200));
-
-    const newExpense: Expense = {
-      ...expense,
-      id: 'expense-' + Date.now(),
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-      opportunity: expense.opportunity_id ? get().opportunities.find(o => o.id === expense.opportunity_id) : undefined
-    };
-
-    set({ expenses: [newExpense, ...get().expenses] });
-    console.log('Expense added successfully, total expenses:', get().expenses.length + 1);
-  },
-
-  updateExpense: async (id, expense) => {
-    console.log('Updating expense locally:', id, expense);
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 200));
-
-    const updatedExpense: Expense = {
-      ...get().expenses.find(e => e.id === id)!,
-      ...expense,
-      updated_at: new Date().toISOString(),
-      opportunity: expense.opportunity_id ? get().opportunities.find(o => o.id === expense.opportunity_id) : get().expenses.find(e => e.id === id)?.opportunity
-    };
-
-    set({ expenses: get().expenses.map(e => e.id === id ? updatedExpense : e) });
-    console.log('Expense updated successfully');
-  },
-
-  deleteExpense: async (id) => {
-    console.log('Deleting expense locally:', id);
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 200));
-
-    set({ expenses: get().expenses.filter(e => e.id !== id) });
-    console.log('Expense deleted successfully');
-=======
     console.log('Adding expense via API:', expense);
     try {
       const response = await apiClient.createExpense(expense);
@@ -911,7 +870,6 @@ export const useCRMStore = create<CRMStore>((set, get) => ({
       console.error('Error deleting expense:', error);
       throw error;
     }
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
   },
 
   updateSettings: async (settings) => {
