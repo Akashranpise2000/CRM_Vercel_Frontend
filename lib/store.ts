@@ -897,8 +897,6 @@ export const useCRMStore = create<CRMStore>((set, get) => ({
     try {
       const response = await apiClient.importData(data);
       if (response.success) {
-<<<<<<< HEAD
-=======
         // Reset cache flags to force refresh of all data after import
         set({
           contactsLoaded: false,
@@ -908,8 +906,6 @@ export const useCRMStore = create<CRMStore>((set, get) => ({
           expensesLoaded: false,
           competitorsLoaded: false
         });
-
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
         // Refresh all data after import
         await Promise.all([
           get().fetchContacts(),

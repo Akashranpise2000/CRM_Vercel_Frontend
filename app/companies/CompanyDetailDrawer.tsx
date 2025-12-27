@@ -192,7 +192,7 @@ export default function CompanyDetailDrawer({
                   <div>
                     <strong>Current Contact Persons:</strong>
                     <div className="ml-4 mt-1 space-y-2">
-                      {company.contacts && company.contacts.filter((contact) => typeof contact === 'object').map((contact, index) => (
+                      {company.contacts && company.contacts.filter((contact): contact is Contact => typeof contact === 'object').map((contact, index) => (
                         <div key={index} className="border-l-2 border-muted pl-3">
                           <div><strong>Contact {index + 1}:</strong></div>
                           <div>Name: {contact.name}</div>
@@ -219,7 +219,7 @@ export default function CompanyDetailDrawer({
                 <p className="text-sm text-muted-foreground">No contacts added yet.</p>
               )}
 
-              {company.contacts && company.contacts.filter((contact) => typeof contact === 'object').map((contact, index) => (
+              {company.contacts && company.contacts.filter((contact): contact is Contact => typeof contact === 'object').map((contact, index) => (
                 <div key={index} className="p-3 border rounded-lg space-y-2">
                   <div className="flex justify-between items-start">
                     <div>

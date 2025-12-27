@@ -2,15 +2,11 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-<<<<<<< HEAD
-import { Progress } from '@/components/ui/progress';
-=======
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
-import { 
-  Eye, 
-  Briefcase, 
-  CreditCard, 
-  Plane, 
+import {
+  Eye,
+  Briefcase,
+  CreditCard,
+  Plane,
   TrendingUp,
   Star,
   Calendar,
@@ -57,16 +53,9 @@ export function WidgetsSection({ opportunities, expenses, contacts, companies }:
         <CardContent>
           <div className="text-2xl font-bold">{opportunities.length}</div>
           <div className="mt-2">
-<<<<<<< HEAD
-            <Progress
-              value={(opportunities.filter(o => o.status === 'closed_win').length / opportunities.length) * 100}
-              className="h-2"
-            />
-=======
             <div className="h-2 bg-gray-200 rounded-full">
               <div className="h-full bg-blue-600 rounded-full" style={{ width: `${(opportunities.filter(o => o.status === 'closed_win').length / Math.max(opportunities.length, 1)) * 100}%` }}></div>
             </div>
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
             <div className="text-xs text-muted-foreground mt-1">
               {opportunities.filter(o => o.status === 'closed_win').length} won
             </div>
@@ -93,7 +82,7 @@ export function WidgetsSection({ opportunities, expenses, contacts, companies }:
             Avg value: ₹{Math.round(
               opportunities
                 .filter(o => ['qualified', 'proposal', 'negotiation'].includes(o.status))
-                .reduce((sum, o) => sum + o.amount, 0) / 
+                .reduce((sum, o) => sum + o.amount, 0) /
               Math.max(opportunities.filter(o => ['qualified', 'proposal', 'negotiation'].includes(o.status)).length, 1)
             ).toLocaleString()}
           </div>
@@ -134,18 +123,9 @@ export function WidgetsSection({ opportunities, expenses, contacts, companies }:
               : 0}%
           </div>
           <div className="mt-2">
-<<<<<<< HEAD
-            <Progress
-              value={opportunities.length > 0
-                ? (opportunities.filter(o => o.status === 'closed_win').length / opportunities.length) * 100
-                : 0}
-              className="h-2"
-            />
-=======
             <div className="h-2 bg-gray-200 rounded-full">
               <div className="h-full bg-purple-600 rounded-full" style={{ width: `${opportunities.length > 0 ? (opportunities.filter(o => o.status === 'closed_win').length / opportunities.length) * 100 : 0}%` }}></div>
             </div>
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
           </div>
           <div className="mt-2 text-xs text-muted-foreground">
             Win rate this quarter
@@ -161,16 +141,16 @@ interface FoodTravelExpensesProps {
 }
 
 export function FoodTravelExpenses({ expenses }: FoodTravelExpensesProps) {
-  const foodExpenses = expenses.filter(e => 
-    e.category?.toLowerCase().includes('food') || 
+  const foodExpenses = expenses.filter(e =>
+    e.category?.toLowerCase().includes('food') ||
     e.category?.toLowerCase().includes('meal') ||
     e.title.toLowerCase().includes('food') ||
     e.title.toLowerCase().includes('meal') ||
     e.title.toLowerCase().includes('restaurant')
   );
 
-  const travelExpenses = expenses.filter(e => 
-    e.category?.toLowerCase().includes('travel') || 
+  const travelExpenses = expenses.filter(e =>
+    e.category?.toLowerCase().includes('travel') ||
     e.category?.toLowerCase().includes('transport') ||
     e.title.toLowerCase().includes('travel') ||
     e.title.toLowerCase().includes('flight') ||
@@ -259,8 +239,8 @@ export function PipelineStageDistribution({ opportunities }: PipelineStageDistri
           {stageDistribution.map((stage) => (
             <div key={stage.stage} className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div 
-                  className="w-3 h-3 rounded-full" 
+                <div
+                  className="w-3 h-3 rounded-full"
                   style={{ backgroundColor: stage.color }}
                 />
                 <span className="text-sm">{stage.name}</span>
@@ -274,7 +254,7 @@ export function PipelineStageDistribution({ opportunities }: PipelineStageDistri
             </div>
           ))}
         </div>
-        
+
         <div className="mt-4 p-3 rounded-lg bg-muted">
           <div className="text-center">
             <div className="text-lg font-bold">{opportunities.length}</div>

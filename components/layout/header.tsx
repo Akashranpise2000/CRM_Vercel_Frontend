@@ -7,10 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Badge } from '@/components/ui/badge';
-<<<<<<< HEAD
-=======
 import { ThemeToggle } from '@/components/ui/theme-toggle';
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
 import { useCRMStore } from '@/lib/store';
 import { useAuth } from '@/lib/auth-context';
 import { useState, useEffect } from 'react';
@@ -180,7 +177,7 @@ export function Header({ onMenuClick, onCompetitorToggle, competitorCount }: Hea
         >
           <Menu className="h-5 w-5" />
         </Button>
-        
+
         <div className="relative flex-1 max-w-sm sm:max-w-lg">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -191,7 +188,7 @@ export function Header({ onMenuClick, onCompetitorToggle, competitorCount }: Hea
             onFocus={() => setIsSearchFocused(true)}
             onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
           />
-          
+
           {/* Search Results Dropdown */}
           {isSearchFocused && searchResults.length > 0 && (
             <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-popover border rounded-md shadow-lg max-h-80 overflow-y-auto">
@@ -215,7 +212,7 @@ export function Header({ onMenuClick, onCompetitorToggle, competitorCount }: Hea
           )}
         </div>
       </div>
-      
+
       <div className="flex items-center gap-2 sm:gap-4">
         {/* Quick Actions Popover */}
         <Popover>
@@ -288,11 +285,7 @@ export function Header({ onMenuClick, onCompetitorToggle, competitorCount }: Hea
                       </div>
                     </div>
                   ))}
-<<<<<<< HEAD
-                  
-=======
 
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                   {/* High Priority Opportunities */}
                   {opportunities.filter((o: Opportunity) => o.priority === 'high' && o.status !== 'closed_win' && o.status !== 'lost').slice(0, 3).map((opportunity: Opportunity) => (
                     <div key={opportunity.id} className="flex items-start gap-3 p-3 hover:bg-accent rounded-lg cursor-pointer">
@@ -311,12 +304,9 @@ export function Header({ onMenuClick, onCompetitorToggle, competitorCount }: Hea
           </PopoverContent>
         </Popover>
 
-<<<<<<< HEAD
-=======
         {/* Theme Toggle */}
         <ThemeToggle />
 
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
         {/* User Menu */}
         <Popover open={isUserMenuOpen} onOpenChange={setIsUserMenuOpen}>
           <PopoverTrigger asChild>

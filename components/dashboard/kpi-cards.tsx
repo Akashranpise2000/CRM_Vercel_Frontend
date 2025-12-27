@@ -2,10 +2,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-<<<<<<< HEAD
-import { Progress } from '@/components/ui/progress';
-=======
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
 import { DollarSign, Target, TrendingUp, Zap, ArrowUpRight } from 'lucide-react';
 
 interface Metrics {
@@ -63,13 +59,9 @@ export function KPICards({ metrics, animateCards }: KPICardsProps) {
             {metrics.winRate.toFixed(1)}%
           </div>
           <div className="mt-2">
-<<<<<<< HEAD
-            <Progress value={metrics.winRate} className="h-2" />
-=======
             <div className="h-2 bg-gray-200 rounded-full">
               <div className="h-full bg-blue-600 rounded-full" style={{ width: `${metrics.winRate}%` }}></div>
             </div>
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
             <p className="text-xs text-muted-foreground mt-1">
               {metrics.wonOpportunities} of {metrics.totalOpportunities} deals won
             </p>
@@ -111,13 +103,9 @@ export function KPICards({ metrics, animateCards }: KPICardsProps) {
             {metrics.conversionRate.toFixed(1)}%
           </div>
           <div className="mt-2">
-<<<<<<< HEAD
-            <Progress value={metrics.conversionRate} className="h-2" />
-=======
             <div className="h-2 bg-gray-200 rounded-full">
               <div className="h-full bg-orange-600 rounded-full" style={{ width: `${metrics.conversionRate}%` }}></div>
             </div>
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
             <p className="text-xs text-muted-foreground mt-1">Qualified to won</p>
           </div>
           <div className="mt-2 text-xs text-muted-foreground">

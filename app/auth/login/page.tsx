@@ -46,16 +46,6 @@ export default function LoginPage() {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10" />
-      <div className="absolute top-0 right-0 -z-10">
-        <div className="w-96 h-96 bg-gradient-to-bl from-blue-200/30 to-purple-200/30 rounded-full blur-3xl" />
-      </div>
-      <div className="absolute bottom-0 left-0 -z-10">
-        <div className="w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-blue-200/30 rounded-full blur-3xl" />
-=======
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted flex items-center justify-center p-4 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-700 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10" />
@@ -64,7 +54,6 @@ export default function LoginPage() {
       </div>
       <div className="absolute bottom-0 left-0 -z-10">
         <div className="w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-blue-200/30 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-full blur-3xl" />
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
       </div>
 
       <div className="w-full max-w-md animate-in slide-in-from-bottom-4 duration-700">
@@ -76,19 +65,6 @@ export default function LoginPage() {
               <Sparkles className="h-3 w-3 text-yellow-800" />
             </div>
           </div>
-<<<<<<< HEAD
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-3">
-            Welcome Back
-          </h1>
-          <p className="text-gray-600 text-lg">Sign in to your CRM Pro account</p>
-        </div>
-
-        {/* Login Form */}
-        <Card className="shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
-          <CardHeader className="space-y-1 pb-6">
-            <CardTitle className="text-2xl font-bold text-center text-gray-900">Sign In</CardTitle>
-            <CardDescription className="text-center text-gray-600">
-=======
           <h1 className="text-4xl font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent mb-3">
             Welcome Back
           </h1>
@@ -100,7 +76,6 @@ export default function LoginPage() {
           <CardHeader className="space-y-1 pb-6">
             <CardTitle className="text-2xl font-bold text-center text-foreground">Sign In</CardTitle>
             <CardDescription className="text-center text-muted-foreground">
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
               Enter your credentials to access your dashboard
             </CardDescription>
           </CardHeader>
@@ -113,19 +88,11 @@ export default function LoginPage() {
               )}
 
               <div className="space-y-3">
-<<<<<<< HEAD
-                <Label htmlFor="email" className="text-sm font-semibold text-gray-700">
-                  Email Address
-                </Label>
-                <div className="relative group">
-                  <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-=======
                 <Label htmlFor="email" className="text-sm font-semibold text-foreground">
                   Email Address
                 </Label>
                 <div className="relative group">
                   <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground group-focus-within:text-blue-500 dark:group-focus-within:text-blue-400 transition-colors">
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                     <Mail className="h-5 w-5" />
                   </div>
                   <Input
@@ -134,30 +101,18 @@ export default function LoginPage() {
                     placeholder="Enter your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-<<<<<<< HEAD
-                    className="pl-12 h-12 text-base border-gray-200 focus:border-blue-500 focus:ring-blue-500/20 bg-gray-50/50 focus:bg-white transition-all duration-200"
-=======
                     className="pl-12 h-12 text-base border-input focus:border-blue-500 focus:ring-blue-500/20 bg-background focus:bg-background transition-all duration-200"
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                     required
                   />
                 </div>
               </div>
 
               <div className="space-y-3">
-<<<<<<< HEAD
-                <Label htmlFor="password" className="text-sm font-semibold text-gray-700">
-                  Password
-                </Label>
-                <div className="relative group">
-                  <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors">
-=======
                 <Label htmlFor="password" className="text-sm font-semibold text-foreground">
                   Password
                 </Label>
                 <div className="relative group">
                   <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground group-focus-within:text-blue-500 dark:group-focus-within:text-blue-400 transition-colors">
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                     <Lock className="h-5 w-5" />
                   </div>
                   <Input
@@ -166,21 +121,13 @@ export default function LoginPage() {
                     placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-<<<<<<< HEAD
-                    className="pl-12 pr-12 h-12 text-base border-gray-200 focus:border-blue-500 focus:ring-blue-500/20 bg-gray-50/50 focus:bg-white transition-all duration-200"
-=======
                     className="pl-12 pr-12 h-12 text-base border-input focus:border-blue-500 focus:ring-blue-500/20 bg-background focus:bg-background transition-all duration-200"
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-<<<<<<< HEAD
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-=======
                     className="absolute right-4 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
                   >
                     {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                   </button>
@@ -208,28 +155,17 @@ export default function LoginPage() {
 
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
-<<<<<<< HEAD
-                <div className="w-full border-t border-gray-200" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-gray-500">Don't have an account?</span>
-=======
                 <div className="w-full border-t border-border" />
               </div>
               <div className="relative flex justify-center text-sm">
                 <span className="px-4 bg-card text-muted-foreground">Don't have an account?</span>
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
               </div>
             </div>
 
             <div className="text-center">
               <Link
                 href="/auth/signup"
-<<<<<<< HEAD
-                className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors group"
-=======
                 className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-semibold transition-colors group"
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
               >
                 Create your account
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -240,11 +176,7 @@ export default function LoginPage() {
 
         {/* Footer */}
         <div className="text-center mt-8">
-<<<<<<< HEAD
-          <p className="text-sm text-gray-500">
-=======
           <p className="text-sm text-muted-foreground">
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
             © 2024 CRM Pro. Secure & Professional Business Management.
           </p>
         </div>

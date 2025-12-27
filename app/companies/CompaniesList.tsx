@@ -6,8 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import type { Company } from "@/types";
 import { Pencil, Trash2 } from "lucide-react";
 
-<<<<<<< HEAD
-=======
 /* ✅ Type guard for contact object */
 function isContactObject(
   contact: unknown
@@ -22,7 +20,6 @@ function isContactObject(
   return typeof contact === "object" && contact !== null;
 }
 
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
 export default function CompaniesList({
   companies,
   onSelect,
@@ -66,20 +63,12 @@ export default function CompaniesList({
         return (
           <Card
             key={company.id}
-<<<<<<< HEAD
-            className={`p-6 hover:shadow-lg transition cursor-pointer ${
-              isSelected ? 'ring-2 ring-blue-500 bg-blue-50' : ''
-            }`}
-            onClick={() => onSelect(company)}
-          >
-=======
             onClick={() => onSelect(company)}
             className={`p-6 cursor-pointer hover:shadow-lg transition ${
               isSelected ? "ring-2 ring-blue-500 bg-blue-50" : ""
             }`}
           >
             {/* Header */}
->>>>>>> 52c36bae7ccd905b9092e37ff13c3ff68f315feb
             <div className="flex justify-between items-start mb-4">
               <div>
                 <h3 className="text-xl font-semibold">{company.name}</h3>
