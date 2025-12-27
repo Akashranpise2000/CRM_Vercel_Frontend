@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { useCRMStore } from "@/lib/store";
 import { Button } from "@/components/ui/button";

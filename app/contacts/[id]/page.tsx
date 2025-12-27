@@ -1,7 +1,5 @@
-'use client';
-
 import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useCRMStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -27,7 +25,7 @@ import { ContactDialog } from '@/components/contacts/contact-dialog';
 
 export default function ContactDetailsPage() {
   const params = useParams();
-  const router = useRouter();
+  const navigate = useNavigate();
   const contactId = params.id as string;
   
   const [editDialogOpen, setEditDialogOpen] = useState(false);
@@ -48,10 +46,10 @@ export default function ContactDetailsPage() {
         <div className="text-center">
           <h2 className="text-xl sm:text-2xl font-bold">Contact not found</h2>
           <p className="text-muted-foreground mt-2 text-sm sm:text-base">The contact you're looking for doesn't exist.</p>
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="mt-4"
-            onClick={() => router.push('/contacts')}
+            onClick={() => navigate('/contacts')}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Contacts
@@ -84,10 +82,10 @@ export default function ContactDetailsPage() {
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3 sm:gap-4">
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             size="icon"
-            onClick={() => router.push('/contacts')}
+            onClick={() => navigate('/contacts')}
           >
             <ArrowLeft className="h-4 w-4" />
           </Button>

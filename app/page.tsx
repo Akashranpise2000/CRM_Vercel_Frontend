@@ -1,7 +1,5 @@
-'use client';
-
 import { useState, useEffect, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -33,7 +31,7 @@ import { apiClient } from '@/lib/api';
 import { Contact, Company, Expense } from '@/types';
 
 export default function Dashboard() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const { user, loading: authLoading } = useAuth();
   const { opportunities, loading: opportunitiesLoading, error: opportunitiesError } = useOpportunities();
   const { activities, loading: activitiesLoading, error: activitiesError } = useActivities();
@@ -275,15 +273,15 @@ export default function Dashboard() {
 
   // Navigation handlers
   const handleNavigateToLeads = () => {
-    router.push('/opportunities?status=lead');
+    navigate('/opportunities?status=lead');
   };
 
   const handleNavigateToContacts = () => {
-    router.push('/contacts');
+    navigate('/contacts');
   };
 
   const handleNavigateToOpportunities = () => {
-    router.push('/opportunities');
+    navigate('/opportunities');
   };
 
   // Show dashboard only when auth is ready and initialized

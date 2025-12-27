@@ -1,7 +1,5 @@
-'use client';
-
 import { useState, useEffect, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import { useCRMStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,7 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
 export default function ContactsPage() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [importDialogOpen, setImportDialogOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -121,8 +119,8 @@ export default function ContactsPage() {
             <Upload className="mr-2 h-4 w-4" />
             Import Contacts
           </Button>
-          <Button 
-            onClick={() => router.push('/contacts/add')}
+          <Button
+            onClick={() => navigate('/contacts/add')}
             className="w-full sm:w-auto"
           >
             <Plus className="mr-2 h-4 w-4" />

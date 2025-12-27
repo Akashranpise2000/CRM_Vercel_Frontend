@@ -1,7 +1,4 @@
-'use client';
-
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Users, Building2, Target, Calendar, DollarSign, Upload, Settings, TrendingUp, Clock, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -99,7 +96,7 @@ interface SidebarProps {
 }
 
 export function Sidebar({ mobileMenuOpen, onMobileMenuChange }: SidebarProps) {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
   const store = useCRMStore();
 
   const getStatusColor = (status: 'active' | 'warning' | 'success' | 'default') => {
@@ -139,7 +136,7 @@ export function Sidebar({ mobileMenuOpen, onMobileMenuChange }: SidebarProps) {
           return (
             <Link
               key={item.name}
-              href={item.href}
+              to={item.href}
               className={cn(
                 'group flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                 isActive

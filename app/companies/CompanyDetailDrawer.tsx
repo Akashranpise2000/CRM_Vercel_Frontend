@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { useCRMStore } from "@/lib/store";
 import type { Company, Contact } from "@/types";
 import { Mail, Phone, Building2, Globe, MapPin, Users, ExternalLink } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 
 // Mapping function for importance levels
 const getImportanceLabel = (importance: string | undefined) => {
@@ -29,7 +29,7 @@ export default function CompanyDetailDrawer({
   open: boolean;
   onClose: () => void;
 }) {
-  const router = useRouter();
+  const navigate = useNavigate();
   const contacts = useCRMStore((state) => state.contacts);
   const opportunities = useCRMStore((state) => state.opportunities);
   const activities = useCRMStore((state) => state.activities);
@@ -350,7 +350,7 @@ export default function CompanyDetailDrawer({
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => router.push('/contacts')}
+                  onClick={() => navigate('/contacts')}
                   className="flex items-center gap-2"
                 >
                   <ExternalLink className="w-4 h-4" />

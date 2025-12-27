@@ -12,13 +12,27 @@ import {
 import { useTheme } from '@/lib/theme-context';
 
 export function ThemeToggle() {
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+
+  // Determine the current theme icon
+  const getThemeIcon = () => {
+    switch (theme) {
+      case 'light':
+        return '☀️';
+      case 'dark':
+        return '🌙';
+      case 'system':
+        return '💻';
+      default:
+        return '🌙';
+    }
+  };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-9 sm:w-9">
-          <span className="text-lg">🌙</span>
+          <span className="text-lg">{getThemeIcon()}</span>
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>

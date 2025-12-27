@@ -1,7 +1,5 @@
-'use client';
-
 import { useAuth } from '@/lib/auth-context';
-import { useRouter, usePathname } from 'next/navigation';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Sidebar } from '@/components/layout/sidebar';
 import { Header } from '@/components/layout/header';
@@ -14,8 +12,9 @@ interface AuthLayoutProps {
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
   const { user, loading } = useAuth();
-  const router = useRouter();
-  const pathname = usePathname();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const pathname = location.pathname;
   
   // Mobile menu state management
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -75,17 +74,17 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
     // If not authenticated and not on auth pages, redirect to login
     if (!user && !pathname.startsWith('/auth/login') && !pathname.startsWith('/auth/signup')) {
       console.log('Redirecting to login - no user found');
-      router.push('/auth/login');
+      navigate('/auth/login');
       return;
     }
 
     // If authenticated and on auth pages, redirect to dashboard
     if (user && (pathname.startsWith('/auth/login') || pathname.startsWith('/auth/signup'))) {
       console.log('User authenticated, redirecting to dashboard');
-      router.push('/');
+      navigate('/');
       return;
     }
-  }, [user, loading, pathname, router]);
+  }, [user, loading, pathname, navigate]);
 
   // Show loading spinner while checking authentication
   if (loading || (!user && pathname === '/')) {

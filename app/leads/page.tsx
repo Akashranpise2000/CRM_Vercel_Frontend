@@ -1,7 +1,5 @@
-"use client";
-
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { useCRMStore } from "@/lib/store";
 import AddLeadModal from "./_components/AddLeadModal";
 import LeadCard from "@/components/leads/LeadCard";
@@ -17,7 +15,7 @@ import { Grid3X3, Kanban, Search, Plus, TrendingUp, Users, CheckCircle, XCircle,
 import type { Lead } from "@/types";
 
 export default function LeadsPage() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const fetchLeads = useCRMStore((s) => s.fetchLeads);
   const fetchCompanies = useCRMStore((s) => s.fetchCompanies);
   const leads = useCRMStore((s) => s.leads);
@@ -119,7 +117,7 @@ export default function LeadsPage() {
                   className="pl-10 w-80 border-slate-300 focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
-              <Button variant="outline" onClick={() => router.push('/import')} className="border-slate-300 hover:bg-slate-50">
+              <Button variant="outline" onClick={() => navigate('/import')} className="border-slate-300 hover:bg-slate-50">
                 Import Lead
               </Button>
               <Button onClick={() => { setEditingLead(null); setShowModal(true); }} className="bg-blue-600 hover:bg-blue-700">

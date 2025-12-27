@@ -11,7 +11,7 @@ import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { useCRMStore } from '@/lib/store';
 import { useAuth } from '@/lib/auth-context';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import type { Activity, Opportunity, Contact, Company } from '@/types';
 
 interface HeaderProps {
@@ -31,7 +31,7 @@ export function Header({ onMenuClick, onCompetitorToggle, competitorCount }: Hea
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [notificationCount, setNotificationCount] = useState(0);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const router = useRouter();
+  const navigate = useNavigate();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
 
@@ -39,7 +39,7 @@ export function Header({ onMenuClick, onCompetitorToggle, competitorCount }: Hea
     setIsSigningOut(true);
     try {
       await signOut();
-      router.push('/auth/login');
+      navigate('/auth/login');
     } catch (error) {
       console.error('Error signing out:', error);
     } finally {
@@ -146,13 +146,13 @@ export function Header({ onMenuClick, onCompetitorToggle, competitorCount }: Hea
 
     switch (result.type) {
       case 'contact':
-        router.push(`/contacts/${result.id}`);
+        navigate(`/contacts/${result.id}`);
         break;
       case 'company':
-        router.push(`/companies`);
+        navigate(`/companies`);
         break;
       case 'opportunity':
-        router.push(`/opportunities`);
+        navigate(`/opportunities`);
         break;
       default:
         break;
@@ -227,7 +227,7 @@ export function Header({ onMenuClick, onCompetitorToggle, competitorCount }: Hea
                 <button
                   key={action.name}
                   className="w-full flex items-center gap-2 px-2 py-2 text-sm rounded hover:bg-accent transition-colors"
-                  onClick={() => router.push(action.href)}
+                  onClick={() => navigate(action.href)}
                 >
                   <span>{action.icon}</span>
                   {action.name}
@@ -340,7 +340,7 @@ export function Header({ onMenuClick, onCompetitorToggle, competitorCount }: Hea
                 className="w-full justify-start gap-2 h-8 px-2"
                 onClick={() => {
                   setIsUserMenuOpen(false);
-                  router.push('/settings');
+                  navigate('/settings');
                 }}
               >
                 <Settings className="h-4 w-4" />

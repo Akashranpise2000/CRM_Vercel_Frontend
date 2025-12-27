@@ -1,7 +1,5 @@
-'use client';
-
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useCRMStore } from '@/lib/store';
 import { AddContactForm } from '@/components/contacts/add-contact-form';
@@ -33,7 +31,7 @@ interface ContactFormData {
 }
 
 export default function AddContactPage() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const addContact = useCRMStore((state) => state.addContact);
   const companies = useCRMStore((state) => state.companies);
   const fetchCompanies = useCRMStore((state) => state.fetchCompanies);
@@ -143,7 +141,7 @@ export default function AddContactPage() {
         description: 'Contact has been created successfully.',
       });
 
-      router.push('/contacts');
+      navigate('/contacts');
     } catch (error: any) {
       console.error('Error creating contact:', error);
 
@@ -164,7 +162,7 @@ export default function AddContactPage() {
   };
 
   const handleCancel = () => {
-    router.push('/contacts');
+    navigate('/contacts');
   };
 
   return (

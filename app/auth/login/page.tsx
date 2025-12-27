@@ -1,8 +1,6 @@
-'use client';
-
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '@/lib/auth-context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -19,7 +17,7 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
 
   const { signIn } = useAuth();
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +31,7 @@ export default function LoginPage() {
         setIsLoading(false);
       } else {
         // Immediate redirect with page refresh to ensure clean state
-        router.push('/');
+        navigate('/');
         setTimeout(() => {
           window.location.reload();
         }, 500);
@@ -164,7 +162,7 @@ export default function LoginPage() {
 
             <div className="text-center">
               <Link
-                href="/auth/signup"
+                to="/auth/signup"
                 className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-semibold transition-colors group"
               >
                 Create your account

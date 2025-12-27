@@ -1,7 +1,5 @@
-"use client";
-
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { useCRMStore } from "@/lib/store";
 import {
   Dialog,
@@ -49,7 +47,7 @@ export default function AddCompanyModal({
   open: boolean;
   onClose: () => void;
 }) {
-  const router = useRouter();
+  const router = useNavigate();
   const addCompany = useCRMStore((state) => state.addCompany);
   const addContact = useCRMStore((state) => state.addContact);
   const contacts = useCRMStore((state) => state.contacts);
@@ -457,7 +455,7 @@ export default function AddCompanyModal({
                   type="button"
                   variant="outline"
                   size="sm"
-                  onClick={() => router.push('/contacts/add')}
+                  onClick={() => router('/contacts/add')}
                   className="border-blue-600 text-blue-600 hover:bg-blue-50"
                 >
                   <User className="w-4 h-4 mr-2" />
@@ -488,7 +486,7 @@ export default function AddCompanyModal({
                     onChange={(value) => updateContact(index, value)}
                     placeholder="Select a contact..."
                     allowCreate={false}
-                    onCreateNew={() => router.push('/contacts/add')}
+                    onCreateNew={() => router('/contacts/add')}
                   />
                 </div>
 

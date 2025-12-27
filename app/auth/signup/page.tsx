@@ -1,8 +1,6 @@
-'use client';
-
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '@/lib/auth-context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -24,7 +22,7 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
 
   const { signUp } = useAuth();
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
@@ -51,7 +49,7 @@ export default function SignupPage() {
         setIsLoading(false);
       } else {
         // Immediate redirect with page refresh to ensure clean state
-        router.push('/');
+        navigate('/');
         setTimeout(() => {
           window.location.reload();
         }, 500);
@@ -233,7 +231,7 @@ export default function SignupPage() {
 
             <div className="text-center">
               <Link
-                href="/auth/login"
+                to="/auth/login"
                 className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-semibold transition-colors group"
               >
                 Sign in instead

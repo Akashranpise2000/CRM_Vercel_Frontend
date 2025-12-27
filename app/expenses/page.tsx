@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useState, useMemo } from 'react';
 import { useCRMStore } from '@/lib/store';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';

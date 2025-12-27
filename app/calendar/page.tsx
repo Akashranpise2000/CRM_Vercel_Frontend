@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, useEffect } from 'react';
 import { useCRMStore } from '@/lib/store';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
