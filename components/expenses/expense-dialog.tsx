@@ -122,6 +122,15 @@ export function ExpenseDialog({ open, onOpenChange, expense }: ExpenseDialogProp
           title: 'Success',
           description: 'Expense has been created successfully.',
         });
+
+        // Check if SMS notifications are enabled and show additional message
+        const settings = get().settings;
+        if (settings?.smsSettings?.enabled) {
+          toast({
+            title: 'SMS Notification',
+            description: 'SMS notification has been sent.',
+          });
+        }
       }
       reset();
       onOpenChange(false);

@@ -119,6 +119,13 @@ export interface Settings {
   user_avatar?: string;
   sectors: string[];
   activity_types: string[];
+  smsSettings?: {
+    enabled?: boolean;
+    twilioAccountSid?: string;
+    twilioAuthToken?: string;
+    twilioPhoneNumber?: string;
+    recipientPhoneNumber?: string;
+  };
   created_at?: string;
   updated_at?: string;
 }

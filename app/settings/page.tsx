@@ -17,7 +17,8 @@ import {
   Download,
   Bell,
   Save,
-  RefreshCw
+  RefreshCw,
+  MessageSquare
 } from 'lucide-react';
 
 export default function SettingsPage() {
@@ -27,6 +28,7 @@ export default function SettingsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [newSector, setNewSector] = useState('');
   const [newActivityType, setNewActivityType] = useState('');
+  const [smsEnabled, setSmsEnabled] = useState(settings?.smsSettings?.enabled || false);
   const { toast } = useToast();
 
   // Fetch settings on component mount
@@ -51,6 +53,7 @@ export default function SettingsPage() {
         user_email: settings.user_email || '',
         user_avatar: settings.user_avatar || '',
       });
+      setSmsEnabled(settings.smsSettings?.enabled || false);
     }
   }, [settings, reset]);
 
@@ -554,6 +557,114 @@ export default function SettingsPage() {
                 <Plus className="h-4 w-4" />
               </Button>
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* SMS Settings */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <MessageSquare className="h-4 w-4 sm:h-5 sm:w-5" />
+            SMS Notifications
+          </CardTitle>
+          <CardDescription className="text-sm">Configure SMS notifications for expense creation</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="font-semibold text-sm sm:text-base">Enable SMS Notifications</h4>
+                <p className="text-xs sm:text-sm text-muted-foreground">
+                  Receive SMS notifications when new expenses are added
+                </p>
+              </div>
+              <input
+                type="checkbox"
+                checked={smsEnabled}
+                onChange={(e) => {
+                  setSmsEnabled(e.target.checked);
+                  updateSettings({
+                    smsSettings: {
+                      ...settings?.smsSettings,
+                      enabled: e.target.checked
+                    }
+                  });
+                }}
+                className="h-4 w-4"
+              />
+            </div>
+
+            {smsEnabled && (
+              <div className="space-y-4 pt-4 border-t">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="twilioAccountSid">Twilio Account SID</Label>
+                    <Input
+                      id="twilioAccountSid"
+                      value={settings?.smsSettings?.twilioAccountSid || ''}
+                      onChange={(e) => updateSettings({
+                        smsSettings: {
+                          ...settings?.smsSettings,
+                          twilioAccountSid: e.target.value
+                        }
+                      })}
+                      placeholder="ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="twilioAuthToken">Twilio Auth Token</Label>
+                    <Input
+                      id="twilioAuthToken"
+                      type="password"
+                      value={settings?.smsSettings?.twilioAuthToken || ''}
+                      onChange={(e) => updateSettings({
+                        smsSettings: {
+                          ...settings?.smsSettings,
+                          twilioAuthToken: e.target.value
+                        }
+                      })}
+                      placeholder="your_auth_token"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="twilioPhoneNumber">Twilio Phone Number</Label>
+                    <Input
+                      id="twilioPhoneNumber"
+                      value={settings?.smsSettings?.twilioPhoneNumber || ''}
+                      onChange={(e) => updateSettings({
+                        smsSettings: {
+                          ...settings?.smsSettings,
+                          twilioPhoneNumber: e.target.value
+                        }
+                      })}
+                      placeholder="+1234567890"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="recipientPhoneNumber">Recipient Phone Number</Label>
+                    <Input
+                      id="recipientPhoneNumber"
+                      value={settings?.smsSettings?.recipientPhoneNumber || ''}
+                      onChange={(e) => updateSettings({
+                        smsSettings: {
+                          ...settings?.smsSettings,
+                          recipientPhoneNumber: e.target.value
+                        }
+                      })}
+                      placeholder="+1234567890"
+                    />
+                  </div>
+                </div>
+
+                <div className="text-xs text-muted-foreground">
+                  <p><strong>Note:</strong> Configure your Twilio credentials to enable SMS notifications. The recipient will receive a message like: "New expense added successfully. Title: [title], Amount: $[amount], Category: [category]"</p>
+                </div>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
