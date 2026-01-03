@@ -12,7 +12,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { CompanyDropdown } from '@/components/ui/company-dropdown';
 import { useToast } from '@/hooks/use-toast';
-import type { Company } from '@/types';
 
 interface ExpenseDialogProps {
   open: boolean;
@@ -43,7 +42,6 @@ const EXPENSE_CATEGORIES = [
 
 export function ExpenseDialog({ open, onOpenChange, expense }: ExpenseDialogProps) {
   const opportunities = useCRMStore((state) => state.opportunities);
-  const fetchOpportunities = useCRMStore((state) => state.fetchOpportunities);
   const addExpense = useCRMStore((state) => state.addExpense);
   const updateExpense = useCRMStore((state) => state.updateExpense);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -69,8 +67,6 @@ export function ExpenseDialog({ open, onOpenChange, expense }: ExpenseDialogProp
     mode: 'onChange'
   });
 
-  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
-
   useEffect(() => {
     if (expense) {
       reset({
@@ -82,7 +78,6 @@ export function ExpenseDialog({ open, onOpenChange, expense }: ExpenseDialogProp
         company_id: expense.company?.id || '',
         description: expense.description || '',
       });
-      setSelectedCompany(expense.company || null);
     } else {
       reset({
         title: '',
@@ -93,7 +88,6 @@ export function ExpenseDialog({ open, onOpenChange, expense }: ExpenseDialogProp
         company_id: '',
         description: '',
       });
-      setSelectedCompany(null);
     }
   }, [expense, reset]);
 
@@ -124,7 +118,7 @@ export function ExpenseDialog({ open, onOpenChange, expense }: ExpenseDialogProp
         });
 
         // Check if SMS notifications are enabled and show additional message
-        const settings = get().settings;
+        const settings = useCRMStore.getState().settings;
         if (settings?.smsSettings?.enabled) {
           toast({
             title: 'SMS Notification',
@@ -249,9 +243,8 @@ export function ExpenseDialog({ open, onOpenChange, expense }: ExpenseDialogProp
             <Label>Related Company</Label>
             <CompanyDropdown
               value={watch('company_id')}
-              onChange={(value, company) => {
+              onChange={(value) => {
                 setValue('company_id', value);
-                setSelectedCompany(company || null);
               }}
               placeholder="Select company (optional)"
               allowCreate={true}
