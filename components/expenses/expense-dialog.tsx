@@ -57,7 +57,7 @@ export function ExpenseDialog({ open, onOpenChange, expense }: ExpenseDialogProp
   } = useForm<ExpenseFormData>({
     defaultValues: {
       title: '',
-      amount: 0,
+      amount: undefined,
       category: 'Miscellaneous',
       date: new Date().toISOString().split('T')[0],
       opportunity_id: '',
@@ -81,7 +81,7 @@ export function ExpenseDialog({ open, onOpenChange, expense }: ExpenseDialogProp
     } else {
       reset({
         title: '',
-        amount: 0,
+        amount: undefined,
         category: '',
         date: new Date().toISOString().split('T')[0],
         opportunity_id: 'none',

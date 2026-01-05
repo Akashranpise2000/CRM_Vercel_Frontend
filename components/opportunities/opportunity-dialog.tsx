@@ -28,7 +28,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { CompanyDropdown } from '@/components/ui/company-dropdown';
 import { ContactDropdown } from '@/components/ui/contact-dropdown';
-import { Opportunity, Company } from '@/types';
+import { Opportunity } from '@/types';
 import type { ContactOption } from '@/hooks/use-contacts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, Phone, Building, User } from 'lucide-react';
@@ -110,16 +110,16 @@ export function OpportunityDialog({ open, onOpenChange, onSubmit, opportunity, c
       key_person_name: '',
       open_date: undefined,
       close_date: undefined,
-      amount: 0,
+      amount: undefined,
       description: '',
       products_pitched: [],
       company_id: '',
       contact_id: undefined,
-      forecast_amount: 0,
+      forecast_amount: undefined,
       status: 'quality',
       sector: '',
       priority: 'medium',
-      probability: 0,
+      probability: undefined,
       owner: '',
       status_remarks: '',
       forecast: 'in-pipeline',
@@ -128,10 +128,7 @@ export function OpportunityDialog({ open, onOpenChange, onSubmit, opportunity, c
     },
   });
 
-  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const [selectedContact, setSelectedContact] = useState<ContactOption | null>(null);
-
-  const status = form.watch('status');
 
   useEffect(() => {
     if (opportunity) {
@@ -156,7 +153,6 @@ export function OpportunityDialog({ open, onOpenChange, onSubmit, opportunity, c
         stage: opportunity.stage || 'lead',
         importance: opportunity.importance || 1,
       });
-      setSelectedCompany(opportunity.company || null);
 
       // Set selected contact if opportunity has a contact
       if (opportunity.contact) {
@@ -195,23 +191,22 @@ export function OpportunityDialog({ open, onOpenChange, onSubmit, opportunity, c
         key_person_name: '',
         open_date: undefined,
         close_date: undefined,
-        amount: 0,
+        amount: undefined,
         description: '',
         products_pitched: [],
         company_id: '',
         contact_id: undefined,
-        forecast_amount: 0,
+        forecast_amount: undefined,
         status: 'quality',
         sector: '',
         priority: 'medium',
-        probability: 0,
+        probability: undefined,
         owner: '',
         status_remarks: '',
         forecast: 'in-pipeline',
         stage: 'lead',
         importance: 1,
       });
-      setSelectedCompany(null);
       setSelectedContact(null);
     }
   }, [opportunity, form, contacts]);
@@ -380,9 +375,8 @@ export function OpportunityDialog({ open, onOpenChange, onSubmit, opportunity, c
                   <FormControl>
                     <CompanyDropdown
                       value={field.value}
-                      onChange={(value, company) => {
+                      onChange={(value) => {
                         field.onChange(value);
-                        setSelectedCompany(company || null);
                       }}
                       placeholder="Select a company"
                       allowCreate={true}
