@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ChevronDown, ChevronRight, Plus, Trash2, Edit3, Save, X, TrendingUp, Users, DollarSign, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -38,7 +38,6 @@ export function CompetitorSidebar({
     weakness: '',
     positionVsYou: '',
     status: 'Equal',
-    marketShare: 0,
     pricingModel: '',
     keyFeatures: '',
     customerBase: '',
@@ -68,7 +67,6 @@ export function CompetitorSidebar({
       weakness: '',
       positionVsYou: '',
       status: 'Equal',
-      marketShare: 0,
       pricingModel: '',
       keyFeatures: '',
       customerBase: '',
@@ -90,6 +88,9 @@ export function CompetitorSidebar({
   };
 
   const startAddingNew = () => {
+    const totalMarketShare = competitors.reduce((sum, comp) => sum + (comp.marketShare || 0), 0);
+    const defaultMarketShare = totalMarketShare < 100 ? 100 - totalMarketShare : undefined;
+
     setIsAddingNew(true);
     setFormData({
       name: '',
@@ -97,7 +98,7 @@ export function CompetitorSidebar({
       weakness: '',
       positionVsYou: '',
       status: 'Equal',
-      marketShare: 0,
+      marketShare: defaultMarketShare,
       pricingModel: '',
       keyFeatures: '',
       customerBase: '',
@@ -207,9 +208,12 @@ export function CompetitorSidebar({
                   type="number"
                   min="0"
                   max="100"
-                  value={formData.marketShare || 0}
-                  onChange={(e) => setFormData({ ...formData, marketShare: parseFloat(e.target.value) || 0 })}
-                  placeholder="0"
+                  value={formData.marketShare ?? ''}
+                  onChange={(e) => {
+                    const val = parseFloat(e.target.value);
+                    setFormData({ ...formData, marketShare: isNaN(val) ? undefined : val });
+                  }}
+                  placeholder=""
                 />
               </div>
 
